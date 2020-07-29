@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>项目详情</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script src="./js/jquery-3.2.1.min .js"></script>
+    <script src="./js/rem.js"></script>
+    <script src="./js/ajax.js"></script>
+    <link rel="stylesheet" href="./css/ProjectDetails.css?time='+new Date().getTime()+'">
+</head>
+
+<body>
+    <div class="box_text">
+        <div class="container">
+            <!-- <img src="./image//banclass.png" alt="" style="width: 100%;height: 100%;"> -->
+        </div>
+        <!-- 课程标题 -->
+        <div class="project_title">
+            <div class="project_h1"></div>
+        </div>
+        <!-- 课程详情 -->
+        <div class="project_detail">
+            <!-- 课程详情简介 -->
+            <div class="detail_title"></div>
+            <!-- 课程详情内容 -->
+            <div class="detail_container">
+                <!-- 详情文字内容 -->
+
+                <div class="detail_html"></div>
+                <!-- 详情图片内容 -->
+                <div class="detail_image">
+                    <img class="imhsrc" src="" />
+
+                </div>
+                <!-- <video id="v1" src="./WeChat_1.mp4"  controls="controls"></video> -->
+                <!-- <audio src="音频文件路径" controls=" controls"></audio> -->
+            </div>
+        </div>
+
+    </div>
+    <script>
+        var productId;
+        //  $('title').text("你好")
+        function getParams(name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return decodeURIComponent(r[2]);
+            }
+            return null;
+        }
+
+
+        productId = getParams('productId').toString();
+        console.log("productId")
+        console.log(productId)
+        // http://vyun.dujialive.com
+        myAjax('post', 'http://vyun.dujialive.com/vyun/app/product/findProductInfoByIdH5', {
+            productId: productId,
+        }, function (res) {
+            console.log(JSON.parse(res))
+            let resData = JSON.parse(res)
+            $('.project_h1').html(resData.data.title)
+            $('.detail_title').html(resData.data.introduction)
+            $('.container').html(
+                `<img src="${resData.data.coverimg}" alt="" style="width: 100%;height: 100%;"> `)
+            var str = "";
+            var conBox = resData.data.imageList;
+            for (var i in conBox) {
+                console.log(conBox[i]);
+                str += `
+           <div class="detail_html" style="display:${conBox[i].sourcetype == 'text'?'block':'none'}">${conBox[i].sourceurl}</div>
+         <div class="detail_image"  style="display:${conBox[i].sourcetype == 'img'?'block':'none'}">
+         <img class="imhsrc" src="${conBox[i].sourceurl}" />       
+        </div>
+        <video id="v1" style="display:${conBox[i].sourcetype == 'video'?'block':'none'}" src="${conBox[i].sourceurl}" poster="${conBox[i].timeurl}" controls="controls"></video>
+        <audio id="audio2" style="display:${conBox[i].sourcetype == 'audio'?'block':'none'}" src="${conBox[i].sourceurl}" controls=" controls"></audio>
+           `
+            }
+            $('.detail_container').html(str)
+
+        })
+    </script>
+</body>
+
+</html>

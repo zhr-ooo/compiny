@@ -1,0 +1,87 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    font-family: "思源黑体";
+}
+
+.box_text {
+    width: 96%;
+    overflow: hidden;
+    margin: 0.34rem auto;
+}
+#v1{
+    width: 9.93rem;
+    height: auto;
+    margin: 0.28rem auto;
+}
+.container {
+    width: 96%;
+    margin: auto;
+    height: auto;
+    border-radius: 0.43rem;
+}
+
+.project_title {
+    margin: 0.17rem auto;
+    width: 96%;
+    overflow: hidden;
+}
+
+.project_h1 {
+    font-weight: bold;
+    font-size: 0.51rem;
+    text-align: center;
+}
+
+.project_detail {
+    width: 96%;
+    margin: auto;
+    margin-top: 0.14rem;
+}
+
+.detail_title {
+    color: #333333;
+    font-size: 0.46rem;
+    letter-spacing:0.05rem;
+    font-size: 0.43rem;
+    text-indent:2em;
+    width: 96%;
+    margin: auto;
+}
+
+.detail_container {
+    margin-top: 0.17rem;
+    font-size: 0.4rem;
+    width: 100%;
+    overflow: hidden;
+    margin: auto;
+    color: #666666;
+}
+
+.detail_container img {
+    display: block;
+}
+.detail_image{
+    width: 100%;
+    overflow: hidden;
+}
+.detail_html {
+    color: #666666;
+    padding: 0.28rem;
+    letter-spacing:0.05rem;
+    font-size: 0.43rem;
+    text-indent:2em;
+}
+
+.imhsrc {
+    margin: auto;
+    width: 100%;
+    margin-top: 0.23rem;
+    height: auto;
+}
+#audio2{
+    /* width: 96%;
+    height: auto; */
+    width: 9.21rem;
+    margin: 0.23rem auto;
+}

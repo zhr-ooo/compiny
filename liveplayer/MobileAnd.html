@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+    <title>直播</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="css/mobile.css?time='+new Date().getTime()+'">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/jquery-3.2.1.min .js"></script>
+    <script src="js/rem.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="http://cdn.bootcss.com/flv.js/1.5.0/flv.min.js"></script>
+    <script src="js/tim-js.js"></script>
+    <script src="js/cos-js-sdk-v5.js"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    div {
+        z-index: 20;
+    }
+
+    .vcp-player .marker {
+        position: absolute;
+        font-size: 0.57rem;
+        color: rgba(255, 255, 255, .5);
+        top: 0;
+        right: 0.14rem;
+        z-index: 9999;
+    }
+
+    #video-container {
+        width: 100%;
+    }
+
+    .cover {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center center;
+    }
+
+    #videoElement {
+        width: 100%;
+        /* z-index: 1000; */
+        position: relative;
+        /* top: 4.17rem; */
+    }
+</style>
+
+
+<body id="body" style="background-color: rgb(56,59,76);">
+    <video autoplay id="videoElement" class="cover" controls autoplay loop preload="auto" webkit-playsinline="true"
+        playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" x-webkit-airplay="allow"
+        x5-video-orientation="portraint" style="object-fit:cover">
+    </video>
+    <!--  muted -->
+    <!-- <video id="videoElement" controls autoplay loop x5-video-player-type="h5" webkit-playsinline="true"
+        playsinline="true" x-webkit-airplay="allow" x5-video-orientation="portraint"></video>
+    <div class="weixin-tip"></div> -->
+    <div class="weixin-tip"></div>
+    <div class="back">
+        <div id="header">
+        </div>
+        <div class="text">
+            <div class="text_le">
+                <div class="txt h1"></div>
+                <div class="txt h2">房间ID:<span class="h3"></span></div>
+            </div>
+
+        </div>
+        <div class="liveNum"></div>
+    </div>
+    <div class="wen wen1"></div>
+    <div class="red_num"></div>
+    <div class="wen wen2"></div>
+    <div class="bottom">
+        <div class="bottom_le1">说点什么...</div>
+        <div class="bottom_ri">
+            <div class="botm_gift"></div>
+            <!-- <div class="botm_share"></div> -->
+            <div class="botm_zan"></div>
+            <div class="dia1">
+                <div class="dianzan"></div>
+            </div>
+        </div>
+    </div>
+    <div id="isios">
+        <img class="down_img" src="image/tollqios.png">
+    </div>
+    <div id="isand">
+        <img class="down_img" src="image/tollqand.png">
+    </div>
+    <div class="appOpen">APP内打开</div>
+    <div style="width:8rem;overflow: hidden;height: 6.5rem;position:absolute;bottom: 1.44rem;left: 0.28rem;z-index:10">
+        <div class="test">
+            <div class="test_list">
+                <div class="ce"></div>
+            </div>
+        </div>
+    </div>
+    <div class="body" style="display: none;">
+        <div style="border-bottom: 0.028rem dashed rgba(255, 255, 255, 0.8);height: 2rem;">
+            <!-- <div class="weixin-tip"></div> -->
+            <div class="back">
+                <div id="header1"> </div>
+                <div class="text">
+                    <div class="text_le" style="width: 3.5rem;">
+                        <div class="txt h1"></div>
+                        <div class="txt h2">我在<span class="h4" style="color:#DCAA50;">v云空间</span>等你哦~</div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="open">打开看看</div>
+        </div>
+        <div class="user">
+            <div class="userImg"></div>
+            <div class="room roomName"></div>
+            <div class="room roomId">ID:<span class="sp1"></span></div>
+        </div>
+        <div class="liveOver">直播已结束</div>
+        <!-- <div class="guan">
+            <div class="guan_le">
+                <div class="guan_le1 guanha"></div>
+                <div class="guan_le2">观看人数</div>
+            </div>
+            <div class="guan_ri">
+                <div class="guan_le1 guanha1"></div>
+                <div class="guan_le2">点赞数</div>
+            </div>
+        </div> -->
+        <div class="button">打开V云空间，观看更多直播</div>
+    </div>
+    <div class="online_box">
+        <div class="onbox">在线人数</div>
+
+        <div class="online_peo">
+        </div>
+        <div class="cha">查看更多</div>
+
+    </div>
+    <div class="he"></div>
+    </div>
+    <div class="giftBox">
+        <div class="gi_f1">礼物</div>
+        <div class="gift_bo">
+            <div class="gift_top">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/红包@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">红包</div>
+                                    <div class="gift_jin"></div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/甜甜圈@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">甜甜圈</div>
+                                    <div class="gift_jin">5V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/么么哒@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">么么哒</div>
+                                    <div class="gift_jin">18V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/荧光棒@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">荧光棒</div>
+                                    <div class="gift_jin">22V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/笔芯@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">笔芯</div>
+                                    <div class="gift_jin">99V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/玫瑰@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">玫瑰</div>
+                                    <div class="gift_jin">520V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/跑车 拷贝@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">跑车</div>
+                                    <div class="gift_jin">5200V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/钻戒@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">钻戒</div>
+                                    <div class="gift_jin">666V币</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/蛋糕@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">蛋糕</div>
+                                    <div class="gift_jin">888V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/锦鲤@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">锦鲤</div>
+                                    <div class="gift_jin">999V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/烟花@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">烟花</div>
+                                    <div class="gift_jin">1888V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/钞票枪@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">钞票枪</div>
+                                    <div class="gift_jin">1999V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/轮船@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">游艇</div>
+                                    <div class="gift_jin">6666V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/图层 18@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">火箭</div>
+                                    <div class="gift_jin">8888V币</div>
+                                </div>
+                            </div>
+
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/城堡@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">城堡</div>
+                                    <div class="gift_jin">9999V币</div>
+                                </div>
+                            </div>
+                            <div class="csik">
+                                <div class="gif1_top">
+                                    <div class="gift_red">
+                                        <img src="image/皇冠@2x.png" alt="">
+                                    </div>
+                                    <div class="gift_text">皇冠</div>
+                                    <div class="gift_jin">18888V币</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="gift_bo1">发送</div>
+            <!-- <div class="he1"></div> -->
+        </div>
+    </div>
+    <div class="ispk">
+        <span class="myfan">
+            <span style="margin-left: 0.28rem;">我方</span>
+            <span class="mycoin">0</span>
+        </span>
+        <span class="othfan">
+            <span style="margin-left: 0.28rem;">对方</span>
+            <span class="otnercoin">0</span>
+        </span>
+        <div class="myspk">
+
+        </div>
+        <div class="otherpk">
+
+        </div>
+    </div>
+    <div class="isPkfen">
+        <span class="chenfa" style="color: #C872F2;font-size: 0.4rem;"></span>
+        <span class="isfen1"></span>
+    </div>
+    <div class="isLian">
+        <div class="lia">主播连麦</div>
+    </div>
+
+    <div class="otherHead">
+        <div class="headTo"></div>
+        <div class="text_le1">
+            <div class="txt myh1"></div>
+            <div class="txt myh2"></div>
+        </div>
+    </div>
+    <div class="sh sheng"></div>
+    <div class="sh bai"></div>
+    <div class="kon_le kon">
+        <div class="kon_le_li"></div>
+    </div>
+    <div class="kon_ri kon">
+        <div class="kon_ri_li"></div>
+    </div>
+</body>
+
+
+
+<script src="js/swiper.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        observer: true, //修改swiper自己或子元素时，自动初始化swiper
+        observeParents: true, //修改swiper的父元素时，自动初始化swiper
+        loop: true
+    });
+    var url1;
+    var liveId;
+    var liveUserId;
+    var shareUserId;
+    var dianzan;
+    var messageList = [{
+        eventData: '',
+        text: '系统消息：欢迎来到直播间！V云空间严禁未成年人进行直播或打赏，请大家共同遵守、监督。直播间内严禁出现违规、低俗色情、吸烟酗酒等内容，若有违规行为请即使举报。如主播在直播过程中以陪玩、送礼等方式进行诱导打赏、私下交易请谨慎判断，以防人身或财产损失。请大家注意财产安全谨防网络诈骗'
+    }]
+    var roomno1;
+    var options = {
+        // SDKAppID: 1400373093 // 测试
+        SDKAppID: 1400373093 //正式
+    };
+    // 创建 SDK 实例，`TIM.create()`方法对于同一个 `SDKAppID` 只会返回同一份实例
+    var tim = TIM.create(options);
+    // 设置 SDK 日志输出级别，详细分级请参见 setLogLevel 接口的说明
+    tim.registerPlugin({
+        'cos-js-sdk': COS
+    });
+    tim.setLogLevel(1);
+    // 匿名用户加入（无需登录，入群后仅能接收消息）
+
+    $(function () {
+        function getParams(name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return decodeURIComponent(r[2]);
+            }
+            return null;
+        }
+
+        liveId = getParams('liveId');
+        liveUserId = getParams('liveUserId');
+        shareUserId = getParams('shareUserId');
+        // http://vyun.dujialive.com
+        live = liveId;
+        myAjax('post', 'http://vyun.dujialive.com/vyun/app/live/user/info', {
+            userId: shareUserId,
+            toUserId: liveUserId,
+            liveId: liveId,
+        }, function (res) {
+            console.log(res)
+            if (res.code == 1000) {
+                alert("直播间已关闭")
+                return;
+            }
+            if (res.data.connectState == 1 || res.data.connectState == 2) {
+                $('#videoElement').css('top', '2.17rem')
+                $('#videoElement').css('height', '9.5rem')
+            } else if (res.data.connectState = 0) {
+                $('#videoElement').css('top', '0rem')
+                $('#videoElement').css('height', '100vh')
+
+            }
+            $(".h1").html(res.data.nickName)
+            $(".h3").html(res.data.roomNo)
+            roomno1 = res.data.roomNo;
+            url1 = res.data.rtmpUrl;
+            $(".liveNum").html(res.data.viewsNum)
+            $("#header").css({
+                'background': ('url("' + res.data.header + '")'),
+                'background-size': '100% 100%'
+            })
+            $("#header1").css({
+                'background': ('url("' + res.data.header + '")'),
+                'background-size': '100% 100%'
+            })
+            $(".userImg").css({
+                'background': ('url("' + res.data.header + '")'),
+                'background-size': '100% 100%'
+            })
+            $(".roomName").html(res.data.nickName)
+            $('.dianzan').html(res.data.likeNum)
+            dianzan = res.data.likeNum
+            $(".sp1").html(res.data.roomNo)
+            // $('.guanha').html(res.data.viewsNum)
+            // $('.guanha1').html(res.data.likeNum)
+            let promise = tim.joinGroup({
+                groupID: res.data.roomNo
+
+            });
+
+            // http://vyun.dujialive.com/vyun
+            promise.then(function (imResponse) {
+
+                var mesList = `<div class="ce"><span style="color: #FADC96;">
+                系统消息：欢迎来到直播间！V云空间严禁未成年人进行直播或打赏，请大家共同遵守、监督。直播间内严禁出现违规、低俗色情、吸烟酗酒等内容，若有违规行为请即使举报。如主播在直播过程中以陪玩、送礼等方式进行诱导打赏、私下交易请谨慎判断，以防人身或财产损失。请大家注意财产安全谨防网络诈骗
+                </span><span style="color:rgba(255,255,255,0.8)"><span></div>`
+                $(".test_list").html(mesList)
+                switch (imResponse.data.status) {
+                    case TIM.TYPES.JOIN_STATUS_WAIT_APPROVAL:
+                        console.log("等待管理员同意")
+                        break;
+                    case TIM.TYPES.JOIN_STATUS_SUCCESS: // 加群成功
+                        console.log('加群成功')
+                        myAjax('post',
+                            'http://vyun.dujialive.com/vyun/app/live/user/send-join-group-msg', {
+                                groupId: roomno1
+                            },
+                            function (res) {
+                                console.log(JSON.parse(res))
+                            })
+
+                        break;
+                    case TIM.TYPES.JOIN_STATUS_ALREADY_IN_GROUP: // 已经在群中
+                        console.log("已经在群中")
+
+                        break;
+                    default:
+                        break;
+                }
+            }).catch(function (imError) {
+                $(".body").css('display', 'block')
+                console.warn('joinGroup error:', imError) // 申请加群失败的相关信息
+            });
+            if (flvjs.isSupported()) {
+                var videoElement = document.getElementById(
+                    'videoElement'); //使用id选择器找到第二步设置的dom元素
+                var flvPlayer = flvjs.createPlayer({ //创建一个新的flv播放器对象
+                    type: 'flv', //类型flv
+                    isLive: 'true',
+                    // url: 'http://play.dujialive.com/vlive/99466064.m3u8?txSecret=1b9f578d823d7c552de7a469fe0b7eb0&txTime=5F05C0CE', //flv文件地址
+                    url: url1,
+                    poster: {
+                        style: 'cover',
+                        src: res.data.coverImg
+                    },
+                });
+                flvPlayer.attachMediaElement(videoElement); //将flv视频装载进video元素内
+                flvPlayer.load(); //载入视频
+                flvPlayer.play();
+            } //播放视频，如果不想要自动播放，去掉本行
+        }, 'json');
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            //重写alert方法
+            window.alert = function (name) {
+                var iframe = document.createElement("IFRAME");
+                iframe.style.display = "none";
+                iframe.setAttribute("src", 'data:text/plain');
+                document.documentElement.appendChild(iframe);
+                window.frames[0].window.alert(name);
+                iframe.parentNode.removeChild(iframe);
+            }
+        }
+
+    })
+    $('.he').click(function () {
+        $('#videoElement').trigger('play')
+    })
+    $('.csik').click(function () {
+        $('.csik').removeClass('a1')
+        $(this).addClass('a1')
+        $('.gift_bo1').css('background', 'rgb(220,170,80)')
+
+    });
+    var redNum = 0;
+    var eventData;
+    var text;
+    tim.on(TIM.EVENT.MESSAGE_RECEIVED, function (event) {
+
+        console.log(event.data[0])
+        var str = "";
+        if (!event.data[0]._elements[0].content.data) {
+            return false;
+        } else {
+            if (JSON.parse(event.data[0]._elements[0].content.data).data.cmd == 1) {
+
+                function personBusi() {
+                    console.log("测试弹幕")
+                    var str = "";
+                    setTimeout(personBusi, 1000 * 60 * 8); //这里的1000表示1秒有1000毫秒,1分钟有60秒,5表示总共5分钟
+                    myAjax('post', 'http://vyun.dujialive.com/vyun/wechat/program/wxCheckText', {
+                        content: eventData
+                    }, function (res) {
+                        console.log(JSON.parse(res).success)
+                        if (JSON.parse(res).success == false) {
+                            let obj = {
+                                eventData: '***',
+                                text: text + ':',
+
+                            }
+                            messageList.push(obj)
+                            for (var i in messageList) {
+                                str +=
+                                    `<div style="width:100%"><div class="ce"><span style="color: #FADC96;">${messageList[i].text}</span><span style="color:rgba(255,255,255,0.8)">${messageList[i].eventData}<span></div></div>`
+                            }
+                            $(".test_list").html(str)
+                        } else if ((JSON.parse(res).success == true)) {
+
+                            let obj = {
+                                eventData: eventData,
+                                text: text + ':'
+                            }
+                            messageList.push(obj)
+                            for (var i in messageList) {
+                                str +=
+                                    `<div style="width:100%"><div class="ce"><span style="color: #FADC96;">${messageList[i].text}</span><span style="color:rgba(255,255,255,0.8)">${messageList[i].eventData}<span></div></div>`
+                            }
+                            $(".test_list").html(str)
+                        }
+
+
+                    });
+
+                };
+                eventData = JSON.parse(event.data[0]._elements[0].content.data).data.msg;
+                text = event.data[0].nick
+                let obj = {
+                    eventData: eventData,
+                    text: text + ':'
+                }
+                messageList.push(obj)
+                for (var i in messageList) {
+                    str +=
+                        `<div style="width:100%"><div class="ce"><span style="color: #FADC96;">${messageList[i].text}</span><span style="color:rgba(255,255,255,0.8)">${messageList[i].eventData}<span></div></div>`
+                }
+                $(".test_list").html(str)
+
+
+            } else if (JSON.parse(event.data[0]._elements[0].content.data).data.cmd == 7) {
+                redNum++
+                $('red_num').show()
+                $('.wen2').show()
+                $('.red_num').html(redNum)
+            } else if (JSON.parse(event.data[0]._elements[0].content.data).data.cmd == 4) {
+                dianzan++
+                $('.dianzan').html(dianzan)
+            } else if (JSON.parse(event.data[0]._elements[0].content.data).data.cmd == 14) {
+                $('.myspk').width('50%')
+                $('.otherpk').width('50%')
+                $('.kon').show()
+                $('.otherHead').css('display', 'block')
+                $('.ispk').css('display', 'block')
+                $(".wen1").css('top', '14rem')
+                $('.wen2').css('top', '12.5rem')
+                $('.red_num').css('top', '12.2rem')
+                var ispka = JSON.parse(event.data[0]._elements[0].content.data).data.msg;
+                var ispkb = JSON.parse(ispka)
+                $('.headTo').css({
+                    'background': ('url("' + ispkb.otherAvatar + '")'),
+                    'background-size': '100% 100%'
+                })
+                $(".myh1").html(ispkb.otherNickname)
+                var zuoList = ispkb.myRankingList;
+                console.log(zuoList)
+                var str = ""
+                if (!zuoList) {
+                    var zuoa = `<div class="kon_le_li">
+                            <img src="image/mykon.png" />
+                            </div>`
+                    $(".kon_le").html(zuoa)
+                } else {
+                    for (var i in zuoList) {
+                        console.log(zuoList[i].header)
+                        str += `
+                        <div class="kon_le_li">
+                            <img src="${zuoList[i].header}" />
+                            </div>
+                            `
+                    }
+                    $(".kon_le").html(str)
+                }
+                var riList = ispkb.otherRankingList
+                console.log(riList)
+                var str1 = ""
+                if (!riList) {
+                    var zuob = `<div class="kon_ri_li">
+                            <img src="image/othkon.png" />
+                            </div>`
+                    $(".kon_ri").html(zuob)
+
+                } else {
+                    for (var i in riList) {
+                        str1 += `<div class="kon_ri_li">
+                            <img src="${riList[i].header}" />
+                            </div>`
+                    }
+                    $(".kon_ri").html(str1)
+                }
+                var boxa = ispkb.myCoin
+                var boxb = ispkb.otherCoin
+                let boxaWidth = 0;
+                boxaWidth = (300 / (ispkb.myCoin + ispkb.otherCoin)) * ispkb.myCoin * 10
+                console.log(boxaWidth)
+                let boxbWidth = 0;
+                boxbWidth = 300 - boxaWidth
+                console.log(boxaWidth)
+                $('.mycoin').html(boxa)
+                $('.otnercoin').html(boxb)
+                $('.otherpk').width(boxbWidth)
+                $('.mypk').width(boxaWidth)
+                $('#videoElement').css('top', '2.17rem')
+                $('#videoElement').css('height', '9.5rem')
+                const countDown = (second) => {
+                    const s = second % 60;
+                    const m = Math.floor(second / 60);
+                    return `<span class='add'>${`00${m}`.slice(-2)}: ${`00${s}`.slice(-2)}</span>`;
+                };
+                let pktime = ispkb.time
+                console.log(pktime)
+                if (ispkb.status == '1') {
+                    $('.chenfa').html("PK")
+                    $(".isPkfen").show()
+                //   if(!pktime){
+                    const timer = setInterval(() => {
+                        const show = countDown(pktime--);
+                        console.log(show)
+                        $('.isfen1').html(show)
+                        if (pktime < 0) {
+                            $('.chenfa').html("惩罚")
+                            // $('.sh').show();
+                            // $('.kon').show();
+                            console.log('倒计时结束！');
+                            clearInterval(timer);
+                        }
+
+                    }, 1000);
+                // }
+                // else{
+                //     return false;
+                // }
+
+                } else if (ispkb.status == '2') {
+                    $('.chenfa').html("惩罚")
+                    console.log("惩罚 status等于2")
+                    $(".isPkfen").show()
+
+                    const timer1 = setInterval(() => {
+                        const show = countDown(pktime--);
+                        $('.isfen1').html(show)
+                        if (pktime < 0) {
+                            $('.sh').show();
+                            $('.kon').show();
+                            console.log('倒计时结束！');
+                            clearInterval(timer1);
+                        }
+
+                    }, 1000);
+                    console.log(ispkb.myCoin)
+                    if (parseInt(ispkb.myCoin) > parseInt(ispkb.otherCoin)) {
+                        $('.sheng').css({
+                            'background': ('url(../image//sl.png)'),
+                            'background-size': '100% 100%'
+                        })
+                        $('.bai').css({
+                            'background': ('url(../image//sb.png)'),
+                            'background-size': '100% 100%'
+                        })
+                    } else if (parseInt(ispkb.myCoin) < parseInt(ispkb.otherCoin)) {
+                        $('.bai').css({
+                            'background': ('url(../image//sl.png)'),
+                            'background-size': '100% 100%'
+                        })
+                        $('.sheng').css({
+                            'background': ('url(../image//sb.png)'),
+                            'background-size': '100% 100%'
+                        })
+                    } else if (parseInt(ispkb.myCoin) = parseInt(ispkb.otherCoin)) {
+                        $('.sheng').css({
+                            'background': ('url(../image//mypi.png)'),
+                            'background-size': '100% 100%'
+                        })
+                        $('.bai').css({
+                            'background': ('url(../image//othpi.png)'),
+                            'background-size': '100% 100%'
+                        })
+                    }
+
+
+
+                } else if (ispkb.status == '3') {
+                    console.log("status == 3")
+                    console.log(ispkb.status)
+                    $('.kon').hide()
+                    //    window.location.reload();
+                    $('.headTo').css({
+                        'background': ('url("' + ispkb.otherAvatar + '")'),
+                        'background-size': '100% 100%'
+                    })
+                    $(".myh1").html(ispkb.otherNickname)
+                    $('.ispk').hide()
+                    $('.otherHead').show()
+                    $('#videoElement').css('height', '9.5rem')
+                    $('#videoElement').css('top', '2.17rem')
+
+                    $('.isLian').css('display', 'block')
+                    $('.ispk').hide()
+                    $('.isPkfen').css('display', 'none')
+                    $(".wen1").css('top', '15rem')
+                    $('.wen2').css('top', '12.5rem')
+                    $('.red_num').css('top', '12.2rem')
+
+                    console.log("连麦")
+                }
+
+                // 进度条 假设a和b初始宽都是50%  a为300分   b为200分   
+                //pk盒子的总宽为300   boxa = ispkb.myCoin  boxb = ispkb.otherCoin
+                // let boxaWidth = (300/boxa+boxb) * boxa + 'px'
+                // let boxbWidth = 300 - boxaWidth + 'px'
+
+            } else if (JSON.parse(event.data[0]._elements[0].content.data).data.cmd == 15) {
+                $(".wen1").css('top', '5.5rem')
+                $('.wen2').css('top', '3.5rem')
+                $('.red_num').css('top', '3.2rem')
+                var ispka = JSON.parse(event.data[0]._elements[0].content.data).data.msg;
+                var ispkb = JSON.parse(ispka)
+                $('.otherHead').css('display', 'none')
+                $('.sh').show();
+                $('.kon').show();
+                console.log("关闭")
+                $('.isLian').hide()
+                $('ischen').hide()
+                $('.kon').hide()
+                $(".isPkfen").css('display', 'none')
+                $('.ispk').css('display', 'none')
+                $('#videoElement').height('100vh')
+                $('#videoElement').css('top', '0rem')
+            } else if (JSON.parse(event.data[0]._elements[0].content.data).data.cmd == 16) {
+                var ispka = JSON.parse(event.data[0]._elements[0].content.data).data.msg;
+                var ispkb = JSON.parse(ispka)
+                $('.kon').hide()
+                //    window.location.reload();
+                $('.headTo').css({
+                    'background': ('url("' + ispkb.otherAvatar + '")'),
+                    'background-size': '100% 100%'
+                })
+                $(".myh1").html(ispkb.otherNickname)
+                $('.ispk').hide()
+                $('.otherHead').show()
+                $('#videoElement').css('height', '9.5rem')
+                $('#videoElement').css('top', '2.17rem')
+                if (ispkb.status = 3) {
+                    $('.isLian').css('display', 'block')
+                    $('.ispk').hide()
+                    $('.isPkfen').css('display', 'none')
+                    $(".wen1").css('top', '15rem')
+                    $('.wen2').css('top', '12.5rem')
+                    $('.red_num').css('top', '12.2rem')
+                }
+                console.log("连麦")
+            }
+        }
+
+    });
+    tim.on(TIM.EVENT.MESSAGE_RECEIVED, function (event) {
+        console.log(event.data[0]._elements[0].content)
+        if (!event.data[0]._elements[0].content.operationType) {
+            return false;
+        } else {
+            if (JSON.parse(event.data[0]._elements[0].content.operationType) == 5) {
+                $(".body").css('display', 'block')
+                console.log("关闭")
+            }
+        }
+    })
+
+
+    var headBox;
+    $(".liveNum").click(function (event) {
+        event.stopImmediatePropagation();
+        $(".online_box").show()
+        myAjax('post', 'http://vyun.dujialive.com/vyun/app/live/history/online-user-list', {
+            liveId: liveId
+        }, function (res) {
+            var str = ""
+
+            headBox = JSON.parse(res).data.records;
+            for (var i in headBox) {
+                str +=
+                    `<div class="online_pe">
+                <image class="online_le" src="${headBox[i].header}"></image>
+                <div class="online_ri">
+                    <div class="on_name">
+                        <div class="on_h1">${headBox[i].nickName}</div>
+                        <div class="nam_he">
+                        <span class="nam_txt1">
+                            <image style="width:100%;height:100%;display:block" src="${headBox[i].sex==1?'image/nan1.png':'image/nv1.png'}"/>
+                        </span>
+                        <span class="nam_txt1 im1" style="display:${headBox[i].creator == 0?'block':'none'}">
+                            <image style="width:100%;height:100%;display:block" src="${headBox[i].creator==0?'image/chuan.png':''}" />
+                     </span>
+                     <span class="nam_txt1 im2" style="display:${headBox[i].ambassador == 1?'block':'none'}">
+                            <image style="width:100%;height:100%;display:block" src="${headBox[i].ambassador==1?'image/fu.png':''}" />
+                     </span>
+                     <span class="nam_txt1 im3" style="display:${headBox[i].vip == 4?'block':'none'}">
+                            <image style="width:100%;height:100%;display:block" src="${headBox[i].vip==4?'image/nian.png':''}" />
+                     </span>
+                     <span class="nam_txt1 im4" style="display:${headBox[i].vip == 5?'block':'none'}">
+                            <image style="width:100%;height:100%;display:block" src="${headBox[i].vip==5?'image/ji.png':''}" />
+                     </span>
+                        </div>
+                    </div>
+                    <div class="on_txt">
+                        <div class="txt_h3">ID:${headBox[i].roomNo}</div>
+                    </div>
+                </div>
+                
+            </div>`
+            }
+            $(".online_peo").html(str)
+
+        })
+    })
+    $('.he').bind("click", function () {
+        $('.online_box').hide();
+        $('.giftBox').hide();
+        $('.weixin-tip').hide()
+    })
+    $(".text_ri").click(function () {
+        $(".appOpen").show(300).delay(2000).hide(100)
+    })
+    $(".botm_gift").click(function () {
+        // http://vyun.dujialive.com/vyun/app/live/gift/list
+        $(".giftBox").show()
+
+    })
+
+    $('.botm_zan, #header, .wen1, .wen2, .online_peo, .bottom_le1, .cha, .gift_bo1').click(show_hide);
+    $('.appOpen, .open,.button').click(some_fun)
+
+    function show_hide() {
+        $(".appOpen").show(300)
+        alert("请点击app内打开按钮,前往app")
+    }
+
+    function some_fun() {
+        var u = navigator.userAgent;
+        // 判断浏览器
+        function is_weixin() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        var isWeixin = is_weixin();
+        if (isWeixin) {
+            $(".weixin-tip").show(300).delay(3000).hide(100);
+            return;
+        } else {
+            $("#videoElement").css('z-index', '1000')
+        }
+        var browser = {
+            versions: function () {
+                var u = navigator.userAgent,
+                    app = navigator.appVersion;
+                return {
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1, //android终端
+                };
+            }(),
+        }
+        if (browser.versions.ios) {
+
+            window.location = 'vcloudservice://type=1?liveUserId=' + liveUserId + '&liveId=' + liveId +
+                '&shareUserId=' + shareUserId + '&type=0';
+            // window.location = 'vcloudservice://type=1'
+            var loadDateTime = new Date();
+            var timeout = setTimeout(function () {
+                var timeOutDateTime = new Date();
+                if (timeOutDateTime - loadDateTime < 5000) {
+                    // location.href = "./down.html";
+                    location.href = "down.html";
+
+                } else {
+                    window.close();
+                }
+            }, 2000);
+            window.onblur = function () {
+                clearTimeout(timeout);
+            }
+        } else if (browser.versions.android) {
+
+            window.location = "vcloudservice://com.cloudqihui.exclusive/open?liveUserId=" + liveUserId + '&liveId=' +
+                liveId + '&shareUserId=' + shareUserId + '&type=0';
+            // window.location = 'vcloudservice://com.cloudqihui.exclusive/open'
+            var loadDateTime = new Date();
+            var timeout = setTimeout(function () {
+                var timeOutDateTime = new Date();
+                if (timeOutDateTime - loadDateTime < 3000) {
+                    // layer.msg("跳转下载页");
+                    // location.href = "./down.html";
+                    location.href = "down.html"
+                } else {
+                    window.close();
+                }
+            }, 2000);
+            window.onblur = function () {
+                clearTimeout(timeout);
+            }
+        }
+    }
+
+
+    // $('.text_ri').click(function(){
+    //       $('.show').show(300)
+    // })
+    // $('.show').hide(300)
+</script>
+
+
+</html>

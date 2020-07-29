@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>立即下载</title>
+		<link id="main_css" rel="stylesheet" type="text/css" href="css/main.css"/>
+		<style type="text/css">
+			#down {
+				padding: 2.09rem 0 1.43rem;
+			}
+			.down_phone {
+				width: 8.5rem;
+				margin-top: 0.24rem;
+			}
+			.down_btn {
+				width: 8.5rem;
+				height: 1.14rem;
+				line-height: 1.14rem;
+				margin: -0.44rem auto 0;
+				background: url(img/login_btn.png);
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+			}
+			/* 温馨提示:也许只在非手机浏览器中显示 */
+			#isios, #isand {
+				position: -ms-device-fixed;
+				position: fixed;
+				top: 0;
+				left: 0;
+			}
+			.down_tooltip {
+			  margin-top: 0.66rem;
+			  padding: 0 0.6rem;
+			  color: #444;
+			  font-size: 0.34rem;
+			}
+			/* 温馨提示 */
+			.down_tishi {
+			  color: #f04955;
+			}
+			.down_img {
+			  width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bg t_c" id="down">
+			<div id="isios" style="display: none;">
+			  <img class="down_img" src="img/tollqios.png" >
+			</div>
+			<div id="isand" style="display: none;">
+			  <img class="down_img" src="img/tollqand.png" >
+			</div>
+			<div>
+				<div class="medium" style="font-size: 0.72rem;">恭喜您</div>
+				<div style="font-size: 0.42rem;margin-top: 0.32rem;">成功加入创客达人</div>
+			</div>
+			<img src="img/down_phone.png" class="down_phone" />
+			<div class="down_btn c_333" onclick="toDown()">
+				立即下载
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function toDown() {
+			window.location = "https://51gsc.com/ios/vyundev";
+		}
+	</script>
+</html>

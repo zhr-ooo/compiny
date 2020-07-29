@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>立即下载</title>
+	<link id="main_css" rel="stylesheet" type="text/css" href="./css/main.css" />
+	<style type="text/css">
+		#down {
+			padding: 2.09rem 0 1.43rem;
+		}
+
+		.down_phone {
+			width: 8.5rem;
+			margin-top: 0.24rem;
+		}
+
+		.down_btn {
+			width: 8.5rem;
+			height: 1.14rem;
+			line-height: 1.14rem;
+			margin: -0.44rem auto 0;
+			background: url(./image/login_btn.png);
+			background-size: 100% 100%;
+			background-repeat: no-repeat;
+		}
+
+		/* 温馨提示:也许只在非手机浏览器中显示 */
+		#isios,
+		#isand {
+			position: -ms-device-fixed;
+			position: fixed;
+			top: 0;
+			left: 0;
+		}
+
+		.down_tooltip {
+			margin-top: 0.66rem;
+			padding: 0 0.6rem;
+			color: #444;
+			font-size: 0.34rem;
+		}
+
+		/* 温馨提示 */
+		.down_tishi {
+			color: #f04955;
+		}
+
+		.down_img {
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="bg t_c" id="down">
+		<div id="isios" style="display: none;">
+			<img class="down_img" src="./image/tollqios.png">
+		</div>
+		<div id="isand" style="display: none;">
+			<img class="down_img" src="./image/tollqios.png">
+		</div>
+		<div>
+			<div class="medium" style="font-size: 0.72rem;">恭喜您</div>
+			<div style="font-size: 0.42rem;margin-top: 0.32rem;">成功加入V云空间</div>
+		</div>
+		<img src="./image/down_phone.png" class="down_phone" />
+		<!-- <div class="down_btn c_333 button" onclick="toDown()"> -->
+			<div class="down_btn c_333 button">
+			立即下载
+		</div>
+		</div>
+	</div>
+</body>
+<script src="./js/jquery-3.2.1.min .js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/rem.js" type="text/javascript" charset="utf-8"></script>
+<script>	
+// $(".button").click(function(){
+// 	location.href = "http://www.dujialive.com"
+// })
+   
+    $(".button").click(function(){
+    function is_weixin() {       
+        var ua = navigator.userAgent.toLowerCase();
+        
+        var browser = {
+            versions: function () {
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1, //android终端
+                };
+            }(),
+        }
+
+            //如果不是微信就是用的浏览器打开的
+            //在判断使用浏览器是IOS还是Android
+
+            if (browser.versions.ios) {
+				//如果是ios
+				location.href = "https://app.squick.com.cn/private/app/#/8f3df25030234025e5525e9d8cca8a3a"
+				// location.href = "https://zc.pgyer.com/InNDsS";
+				// location.href = "https://app.zsign.net/private/app/#/8f3df25030234025e5525e9d8cca8a3a"
+            }
+            else if (browser.versions.android) {
+                //如果是android
+                // location.href = "https://down.96rmb.cn/VYun2A";
+                // location.href = "https://qiniu.dujialive.com/0/680d995fdcf94f239a46c40c9c61a1c7.apk";
+                // location.href = "http://vyun.dujialive.com/down/app-release.apk";
+                location.href = "https://www.pgyer.com/kAQV";
+            } 
+    }
+
+    is_weixin();
+})
+</script>
+</html>

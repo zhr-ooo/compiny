@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>地址录入</title>
+	<link id="main_css" rel="stylesheet" type="text/css" href="css/main.css" />
+	<link id="address_css" rel="stylesheet" type="text/css" href="css/address.css" />
+	<link rel="stylesheet" type="text/css" href="css/layui.css" />
+	<link rel="stylesheet" type="text/css" href="css/layer.css" />
+</head>
+
+<body>
+	<div id="address" class="c_333 regular">
+		<div id="ress_head" class="t_c p_r">
+			<i class="layui-icon layui-icon-left p_a" style="color: #333;left: 0.42rem;font-size: 0.6rem;"
+				onclick="toPay()"></i>
+			收货地址
+		</div>
+		<div class="ress_form">
+			<div class="form_div flex a_c">
+				<span style="display: inline-block;width: 2rem;">联系人</span>
+				<input type="text" name="user" id="user" value="" placeholder="请输入联系人" class="c_999" />
+			</div>
+			<div class="form_div flex a_c">
+				<span style="display: inline-block;width: 2rem;">联系电话</span>
+				<input type="number" name="phone" id="phone" value="" placeholder="请输入联系电话" class="c_999" />
+			</div>
+			<div class="form_div">
+				<textarea class="regular" rows="5" name="desc" id="text" placeholder="请输入收获地址：详细到道路、门牌号、小区、楼栋号以及单元室等"
+					class="layui-textarea"></textarea>
+			</div>
+		</div>
+		<div id="ress_btn" class="t_c" onclick="confirm()">
+			确认地址
+		</div>
+	</div>
+</body>
+<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>
+<script id="public" src="js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var formData = "";
+	var url = "/system/ambassadororder/save";
+	var inviteUid = getUrlParam("inviteUid"),
+		payData = JSON.parse(localStorage.getItem("payData"));
+	var addressInfo = payData.addressInfo;
+	$(function () {
+		if (addressInfo && addressInfo != {} && addressInfo != []) {
+			$("#user").val(addressInfo.receiverName);
+			$("#phone").val(addressInfo.receiverMobile);
+			$("#text").val(addressInfo.receiverAddress);
+		}
+	})
+
+	function toPay() {
+		history.go(-1);
+	}
+
+	function confirm() {
+		if (!inviteUid || inviteUid == '' || inviteUid == undefined) {
+			layerMsgCenter('链接错误，请重新扫码登录!');
+			return
+		}
+		var receiverName = $("#user").val(),
+			receiverMobile = $("#phone").val(),
+			receiverAddress = $("#text").val();
+		if (receiverName == undefined || receiverName === "") {
+			layerMsg("请填写联系人！");
+			return
+		}
+		if (receiverMobile == undefined || receiverMobile === "") {
+			layerMsg("请填写联系电话！");
+			return
+		}
+		if (!reg.test(receiverMobile)) {
+			layerMsg("请填写正确手机号！");
+			return
+		}
+		if (receiverAddress == undefined || receiverAddress === "") {
+			layerMsg("请填写详细地址！");
+			return
+		}
+		var thisIndex = layer.load(0, {
+			shade: [0.6, '#000']
+		});
+		formData = 'type=3&userId=' + payData.userId + '&inviteUid=' + inviteUid + '&receiverName=' + receiverName +
+			'&receiverMobile=' + receiverMobile + '&receiverAddress=' + receiverAddress;
+		// 请求接口
+		post(url, formData, function (res) {
+			layer.close(thisIndex);
+			if (res.status == "success") {
+				var againData = {
+					userId: payData.userId,
+					goodsPrice: payData.goodsPrice,
+					goodsName: payData.goodsName,
+					addressInfo: {
+						receiverName: receiverName,
+						receiverMobile: receiverMobile,
+						receiverAddress: receiverAddress,
+					}
+				}
+				localStorage.setItem("payData", JSON.stringify(againData));
+				layerMsg("地址添加成功", function () {
+					location.href = 'pricepay.html?inviteUid=' + inviteUid;
+				}, 1000)
+			} else {
+				layerMsg(res.message);
+			}
+		})
+	}
+</script>
+
+</html>

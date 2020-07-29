@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>创客达人支付详情</title>
+	<link id="main_css" rel="stylesheet" type="text/css" href="css/main.css" />
+	<link rel="stylesheet" type="text/css" href="css/layui.css" />
+	<link rel="stylesheet" type="text/css" href="css/layer.css" />
+	<link id="pay_css" rel="stylesheet" type="text/css" href="css/pay.css" />
+</head>
+
+<body>
+	<div id="pay" class="regular">
+		<div id="pay_head" clasas="t_c"></div>
+		<!-- 地址 -->
+		<div id="pay_add">
+			<!-- 有地址：直接显示 -->
+			<div class="flex a_c flex_sb add_wrap" onclick="toAddress()">
+				<div class="flex a_c add_left had_add" id="had_add">
+					<img src="img/add_ding.png" class="add_ding">
+					<div class="address">
+						<div class="add_user">
+							收货人：
+							<span id="add_user"></span>
+							<span id="add_phone"></span>
+						</div>
+						<div class="add_ju c_999"></div>
+					</div>
+				</div>
+				<!-- 没有地址：另外一种样式 -->
+				<div class="flex a_c add_left no_add" id="no_add">
+					<span>收货地址</span>
+					<span class="c_999" style="margin-left: 0.32rem;">请填写您的收货地址</span>
+				</div>
+				<div class="add_right">
+					<i class="layui-icon layui-icon-right" style="color: #CCCCCC;">
+					</i>
+				</div>
+			</div>
+		</div>
+		<!-- 创客达人 -->
+		<div id="add_serve" class="flex a_c flex_sb">
+			<div class="flex a_c">
+				<img src="img/vserveC.png" class="vserve_img">
+				<div class="v_serve">
+
+					<div class="v_serve_title regular">创客达人</div>
+					<div>
+						<img src="img/vcloud.png" class="vcloud_img">
+						<span class="v_space c_666">V云空间</span>
+					</div>
+				</div>
+			</div>
+			<div class="add_money">
+				￥<span id="v_money">1999</span>/年
+			</div>
+		</div>
+		<!-- 支付选择 -->
+		<div id="pay_choose">
+			<div class="flex flex_sb a_c choose_li choose_li_one">
+				<div class="flex a_c">
+					<img src="img/wx.png" style="width: 0.69rem;height: 0.69rem;">
+					<span style="color: #000000;margin-left: 0.3rem;">微信支付</span>
+				</div>
+				<img src="img/pay_select.png" data-type="wx" class="choose_img" style="width: 0.6rem;height: 0.6rem;"
+					onclick="choosePay(this)">
+			</div>
+			<!-- <div class="flex flex_sb a_c choose_li">
+					<div class="flex a_c">
+						<img src="img/aplay.png" style="width: 0.69rem;height: 0.69rem;" >
+						<span style="color: #000000;margin-left: 0.3rem;">支付宝支付</span>
+					</div>
+					<img src="img/pay_noselect.png" data-type ="apay" class="choose_img" style="width: 0.6rem;height: 0.6rem;" onclick="choosePay(this)" >
+				</div> -->
+		</div>
+		<!-- 服务商介绍 -->
+		<div id="introduce">
+			<div class="intro_img p_r t_c">
+				<img src="img/add_fw.png" class="p_a">
+				<span style="font-size: 0.39rem;color: #FCDA48;">创客达人介绍</span>
+			</div>
+			<div class="v_intro c_666">
+				V云空间中国区仅招募40000个创客达人，成为创客达人后将享受更高的动态奖励。自己团队体系下的用户在V云开通VIP资格、消费等行为，都会给大使服务商带来V钻收益。每位服务商大使将免费获赠10个VIP账号，保持一定贡献度还可以均分平台分红收益。
+			</div>
+		</div>
+		<div id="btn_topay">
+			<div class="btn_pay flex a_c flex_ju" onclick="toPay()">
+				<img src="img/topay.png" style="width: 0.48rem;height: 0.48rem;margin-right: 0.3rem;">
+				<span style="font-size: 0.46rem;">立即支付</span>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" name="" id="hide" value="wx" />
+</body>
+<script type="text/javascript" src="./js1/zepto.min.js"></script>
+<script src="./js1/md5.min.js"></script>
+<script src="./js1/ajax.js"></script>
+<script type="text/javascript" src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script id="public" src="js/public.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var inviteUid = "";
+	// var payUrl = "/system/ambassadororder/youpay";
+	var payUrl = "/system/ambassadororder/pay-order";
+	var payPost = "/system/ambassadororder/orderNotify";
+	var payData = JSON.parse(localStorage.getItem("payData"));
+	var appId = "wxe093d88b068ec633";
+	var mch_id = "1535052251";
+	var timeStamp = (Date.parse(new Date()) / 1000).toString();
+	var nonceStr = "QmKcQ5yt0Kbvm54c";
+	var pg = "";
+	var outTradeNo = "";
+	var signType = "MD5";
+	var paySign = "";
+	var code = "";
+	var openId = "";
+	$(function () {
+		code = getUrlParam("code");
+		// alert(code);
+		inviteUid = localStorage.getItem("inviteUid");
+		if (payData) {
+			var addressInfo = payData ? payData.addressInfo : {};
+			if (addressInfo == {} || addressInfo.length == 0 || !addressInfo) {
+				$("#no_add").css("display", "flex");
+				$("#had_add").css("display", "none");
+			} else {
+				$("#add_user").html(addressInfo.receiverName);
+				$("#add_phone").html(addressInfo.receiverMobile);
+				$(".add_ju").html(addressInfo.receiverAddress);
+				$("#no_add").css("display", "none");
+				$("#had_add").css("display", "flex");
+			}
+			$(".v_serve_title").html(payData.goodsName);
+			$("#v_money").html(payData.goodsPrice);
+		} else {
+
+		}
+		//判断是否为微信浏览器
+		var ua = window.navigator.userAgent.toLowerCase();
+		if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+			//重写alert方法
+			window.alert = function (name) {
+				var iframe = document.createElement("IFRAME");
+				iframe.style.display = "none";
+				iframe.setAttribute("src", 'data:text/plain');
+				document.documentElement.appendChild(iframe);
+				window.frames[0].window.alert(name);
+				iframe.parentNode.removeChild(iframe);
+			}
+		}
+	})
+	// 跳转到添加地址页面
+	function toAddress() {
+		if (openId == "") {
+			myAjax('post', 'http://vyun.dujialive.com/vyun/wechat/public/get-openId', {
+				"code": code
+			}, function (res) {
+				openId = res.data;
+				localStorage.setItem("openId", openId);
+			}, 'json');
+		}
+		if (!inviteUid || inviteUid == '' || inviteUid == undefined) {
+			layerMsgCenter('用户不存在，请重新扫码登录!');
+			return
+		}
+		if (payData) {
+			location.href = './creataddress.html?inviteUid=' + inviteUid;
+		} else {
+			layerMsgCenter('用户不存在，请重新登录!', function () {
+				location.href = './creatlogin.html?shareId=' + inviteUid
+			});
+		}
+
+
+	}
+	// 跳转到支付页面
+	function toPay() {
+
+		if (!inviteUid || inviteUid == '' || inviteUid == undefined) {
+			layerMsgCenter('用户不存在，请重新扫码登录!');
+			return
+		}
+		if (payData) {
+			var addressInfo = payData ? payData.addressInfo : {};
+			if (addressInfo == {} || addressInfo.length == 0 || !addressInfo) {
+				layerMsgCenter('请完善收货人信息!');
+				return
+			}
+			openId = localStorage.getItem("openId");
+			if (openId == "" || openId == null || openId == undefined) {
+				myAjax('post', 'http://vyun.dujialive.com/vyun/wechat/public/get-openId', {
+					"code": code
+				}, function (res) {
+					openId = res.data;
+					localStorage.setItem("openId", openId);
+				}, 'json');
+
+			}
+			// myAjax('post', 'http://vyun.dujialive.com/vyun/wechat/public/pay-order', {
+			//     "openId": openId
+			// }, function (res) {
+			var payForm = 'type=2&inviterUid=' + inviteUid + '&userId=' + payData.userId + "&openId=" + openId;
+			post(payUrl, payForm, function (res) {
+				if (res.status == "success") {
+
+					outTradeNo = res.data.outTradeNo;
+
+					pg = res.data.prepayId;
+					var stringA =
+						"appId=wxe093d88b068ec633&nonceStr=QmKcQ5yt0Kbvm54c&package=prepay_id=" +
+						pg
+
+						+
+						"&signType=MD5&timeStamp=" + timeStamp;
+
+					var stringSignTemp = stringA + "&key=jimoting1234CHENGDUYOUXIANGONGSI";
+
+					paySign = md5(stringSignTemp).toUpperCase();
+					// localStorage.setItem("parUrl", res.data.parUrl);
+					// setTimeout(function() {
+					// 	location.href = res.data.parUrl;
+					// }, 1000);
+					if (typeof WeixinJSBridge == "undefined") {
+						if (document.addEventListener) {
+							document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+						} else if (document.attachEvent) {
+							document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+							document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+						}
+					} else {
+						onBridgeReady();
+					}
+
+
+
+					// localStorage.setItem("parUrl", res.data.parUrl);
+					// setTimeout(function() {
+					// 	location.href = res.data.parUrl;
+					// }, 1000);
+				} else {
+					layerMsg(res.message);
+				}
+			})
+
+			// }, 'json');
+
+
+
+
+
+		} else {
+			layerMsg('用户不存在，请重新登录!', function () {
+				location.href = './creatlogin.html?shareId=' + inviteUid
+			});
+		}
+	}
+	// 选择支付方式
+	function choosePay(obj) {
+		$(".choose_img").attr("src", "img/pay_noselect.png")
+		$(obj).attr("src", "img/pay_select.png");
+		$("#hide").val(obj.dataset.type);
+	}
+
+
+	function onBridgeReady() {
+
+		WeixinJSBridge.invoke(
+			'getBrandWCPayRequest', {
+				"appId": appId, //公众号名称，由商户传入       
+				"timeStamp": timeStamp, //时间戳，自1970年以来的秒数       
+				"nonceStr": nonceStr, //随机串       
+				"package": "prepay_id=" + pg,
+				"signType": signType, //微信签名方式:       
+				"paySign": paySign //微信签名  
+			},
+
+			function (res) {
+
+				if (res.err_msg == "get_brand_wcpay_request:ok") {
+					var fromPaydate = "money=9999&orderno=" + outTradeNo + "&key=" + pg;
+					post(payPost, fromPaydate, function (res) {
+						alert("支付成功");
+					})
+					// myAjax('post',
+					// 	'http://vyun.dujialive.com/vyun/system/ambassadororder/orderNotify', {
+					// 	"money": "9999",
+					// 	"orderno": outTradeNo,
+					// 	"key": pg
+					// }, function (res) {
+					// 	alert("支付成功");
+					// }, 'json');
+
+				} // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。   
+			}
+		);
+	}
+</script>
+
+</html>

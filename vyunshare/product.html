@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>课程详情</title>
+		<link id="main_css" rel="stylesheet" type="text/css" href="css/main.css"/>
+		<link rel="stylesheet" type="text/css" href="css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/layer.css"/>
+		<link id="product_css" rel="stylesheet" type="text/css" href="css/product.css"/>
+	</head>
+	<body>
+		<div class="no_product">
+			<span id="no_tool">
+				<img src="img/load.gif" class="load_img" >
+			</span>
+		</div>
+		<div id="product" style="display: none;">
+			<div id="isios">
+			  <img class="down_img" src="img/tollqios.png" >
+			</div>
+			<div id="isand">
+			  <img class="down_img" src="img/tollqand.png" >
+			</div>
+			<div id="pro_header" class="c_333">
+				<div class="pro_pro t_c medium">课程详情</div>
+				<!-- 课程作者 -->
+				<div class="pro_author flex a_c">
+					<img src="./img/0.jpg" class="pro_avatar" />
+					<div class="pro_author_aut">
+						<div class="flex a_c">
+							<span style="font-size: 0.51rem;" id="author"></span>
+							<img src="img/pro_vip.png" id="pro_isvip" style="width: 0.42rem;height: 0.39rem;margin-left: 0.18rem;" >
+						</div>
+						<div style="margin-top: 0.28rem;" class="flex a_c">
+							<span class="c_666" style="font-size: 0.36rem;" id="fans">0</span>
+							<span class="c_999" style="font-size: 0.32rem;margin-left: 0.18rem;">粉丝</span>
+						</div>
+					</div>
+				</div>
+				<!-- 标题和详情 -->
+				<div class="flex a_c flex_sb" style="margin-top: 0.42rem;">
+					<div class="flex a_c all_title">
+						<div class="t_c pro_biao">标题</div>
+						<div class="pro_title pro_all c_333 medium" id="all"></div>
+						<div class="pro_title c_333 medium" id="other"></div>
+					</div>
+					<span class="title_xiang c_999" onclick="toggle()">展开
+						<!-- <i class="layui-icon layui-icon-down" id="xiang_icon"></i> -->
+					</span>
+				</div>
+				<!-- <div id="title_content" class="c_333 medium"> -->
+					
+				<!-- </div> -->
+				<!-- 观看和评论 -->
+				<div style="margin-top: 0.3rem;font-size: 0.36rem;color: #B2B2B2;" class="flex a_c">
+					<span class="flex a_c">
+						<img src="img/pro_eye.png" style="width: 0.54rem;height: 0.54rem;margin-right: 0.12rem;" >
+						<i id="view_count">0</i>
+					</span>
+					<span class="flex a_c" style="margin: 0 0.41rem;">
+						<img src="img/pro_common.png" style="width: 0.45rem;height: 0.45rem;margin-right: 0.12rem;" />
+						<i id="comment">0</i>
+					</span>
+					<span id="pro_time"></span>
+				</div>
+			</div>
+			<!-- 具体内容 -->
+			<div id="session">
+				<div id="no_data" class="t_c">
+					<img src="img/nodata.png" style="width: 5.22rem;height: 5.22rem;margin: auto;" >
+					<div class="c_999" style="margin-top: 0.3rem;">暂无相关数据</div>
+				</div>
+				<div id="sess_content" style="display: none;color: #000;">
+					
+				</div>
+				
+			</div>
+			
+			<!-- 评论区 -->
+			<div id="comments">
+				<div class="pro_comm_title medium c_333">
+					热门评论
+				</div>
+				<!-- 热门评论具体内容 -->
+				<div id="pro_comm_cin"></div>
+				<!-- <div id="no_data_common" class="t_c" style="padding: 0.5rem 0;">
+					<img src="img/nodata.png" style="width: 5.22rem;height: 5.22rem;margin: auto;" >
+					<div class="c_999" style="margin-top: 0.3rem;">暂无评论</div>
+				</div> -->
+			</div>
+			<div id="pro_foot" class="t_c">
+				<button type="button" class="btn_toapp" onclick="openApp()">APP内打开</button>
+			</div>
+		</div>
+		
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script id="public" src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script id="product_js" src="js/product.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		// 标题详情显隐切换
+		function toggle() {
+			$("#all").show();
+			$("#other").hide();
+			$(".title_xiang").hide();
+			$(".all_title").removeClass('a_c');
+			if(!$("#make_up")[0]) {
+				$("#all").append('<span id="make_up" onclick="makeUp()">收起</span>');
+			}
+		}
+		function makeUp() {
+			$("#all").hide();
+			$("#other").show();
+			$(".title_xiang").show();
+			$(".all_title").addClass('a_c');
+		}
+	</script>
+</html>

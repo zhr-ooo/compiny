@@ -1,0 +1,129 @@
+#pay {
+	min-height: 100%;
+	background: #EFEFEF;
+	color: #333333;
+	font-size: 0.46rem;
+	padding-bottom: 1.69rem;
+}
+div {
+	background: #fff;
+}
+/* 头部标题 */
+#pay_head {
+	font-size: 0.54rem;
+	padding: 0.46rem 0;
+	border-bottom: 1px solid #FAFAFA;
+}
+/* 有地址样式 */
+.add_wrap {
+	padding: 0.45rem 0.42rem 0.45rem 0;
+}
+#had_add {
+	padding-left: 0.39rem;
+	display: none;
+}
+/* 定位图标 */
+.add_ding {
+	width: 0.48rem;
+	height: 0.48rem;
+}
+.address {
+	width: 7.77rem;
+	margin-left: 0.4rem;
+}
+/* 地址 */
+.add_ju {
+	font-size: 0.36rem;
+	margin-top: 0.25rem;
+}
+
+/* 没有地址的样式 */
+#no_add {
+	/* display: none; */
+	padding-left: 0.45rem;
+}
+
+/* v云服务商 */
+#add_serve {
+	margin-top: 0.3rem;
+	padding: 0.37rem 0.42rem;
+}
+/* 左边的图片 */
+.vserve_img {
+	width: 2.04rem;
+	height: 1.56rem;
+	margin-right: 0.3rem;
+}
+/* 年度服务商 */
+.v_serve_title {
+	font-size: 0.54rem;
+	margin-bottom: 0.31rem;
+}
+/* 云图片 */
+.vcloud_img {
+	width: 0.44rem;
+	height: 0.44rem;
+	margin-right: 0.15rem;
+}
+/* V云空间 */
+.v_space {
+	font-size: 0.36rem;
+}
+/* 金额 */
+.add_money {
+	color: #FCDA48;
+	font-size: 0.36rem;
+}
+#v_money {
+	font-size: 0.54rem;
+}
+
+/* 支付选择 */
+#pay_choose {
+	margin-top: 0.3rem;
+}
+.choose_li {
+	padding: 0.45rem 0.42rem;
+}
+.choose_li_one {
+	border-bottom: 1px solid #e6e6e6;
+}
+/* 介绍 */
+#introduce {
+	margin-top: 0.3rem;
+	padding: 0.53rem 0;
+}
+.intro_img {
+	margin: auto;
+	width: 5.22rem;
+}
+.intro_img img {
+	width: 100%;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+/* 介绍内容 */
+.v_intro {
+	margin: 0.58rem 0.69rem 0.54rem 0.42rem;
+	line-height: 0.79rem;
+}
+
+
+/* 去支付按钮 */
+#btn_topay {
+	width: 100%;
+	position: fixed;
+	position: -ms-device-fixed;
+	bottom: 0;
+	padding: 0.36rem;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+.btn_pay {
+	width: 9.96rem;
+	height: 1.14rem;
+	background: url(../img/pay_img.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	margin: auto;
+}

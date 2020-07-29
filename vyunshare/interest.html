@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>V云服务商权益</title>
+		<link id="main_css" rel="stylesheet" type="text/css" href="css/main.css"/>
+		<link rel="stylesheet" type="text/css" href="css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/layer.css"/>
+		<style type="text/css">
+			ul,li {
+				list-style: disc;
+				list-style: -moz-disc;
+			}
+			#inter {
+				width: 100%;
+				min-height: 100%;
+				font-size: 0.46rem;
+				background-image: url(img/bg_inter.png);
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+				padding: 2.45rem 0 1.19rem;
+			}
+			.inter_fun {
+				width: 10.14rem;
+				margin: auto;
+				background: url(img/inter_fun_bg.png);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				padding: 0.66rem 0.48rem 0.65rem 1.01rem;
+			}
+			.inter_fun ul li{
+				font-family: 'regul';
+				color: #DAC982;
+				line-height: 0.72rem;
+			}
+			.login_btn {
+				width: 7.72rem;
+				height: 1.14rem;
+				line-height:1.14rem;
+				margin: 0.79rem auto 0;
+				background: url(img/login_btn.png);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+			}
+			.layui-layer-hui .layui-layer-content {
+				background: rgba(255,255,255,0.3);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="t_c" id="inter">
+			<img src="img/inter_title.png" style="width: 10.79rem;" >
+			<img src="img/inter_privilege.png" style="width: 10.32rem;" >
+			<img src="img/inter_fun.png" style="width:3.54rem;height: 1.59rem;margin-top: 1.49rem;margin-bottom: 0.73rem;" >
+			<div class="inter_fun t_s">
+				<ul>
+					<li>稀缺权益：中国区仅开通8800个大使服务商代理名额</li>
+					<li>推广奖励翻倍：直推、间推、课程引导、转发、打赏等</li>
+					<li>大使服务商的V值大于300分时即可享受集团公司次月盈利10%的平均分红，300分以上的部分每累计50V值即可增加一个月的分红权益</li>
+					<li>大使服务商获得免费赠送账号50个</li>
+				</ul>
+			</div>
+			<div class="login_btn c_333 regular" onclick="toLoginPage()">
+				V云服务商<span style="font-size: 0.36rem;">￥9999</span>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script id="public" src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		// 根据id查询用户接口
+		var getIdUser = "/system/appuser/getInvitation";
+		var isId = false;
+		var inviteUid = getUrlParam("shareId");
+		var nickName = "";
+		var thisIndex;
+		var msg = "";
+		$(function() {
+
+		  if(inviteUid && inviteUid !== '') {
+			  thisIndex = layer.load(0, {
+			  	shade: [0.6, '#000']
+			  });
+			idData = "inviteUid="+inviteUid+"&type=1";
+			post(getIdUser, idData, backId); 
+		  } else {
+			isId = false;
+			msg = '邀请人不存在，请重新扫码';
+			layerMsgCenter('邀请人不存在，请重新扫码', function(){}, 2000);
+		  }
+		})
+		
+		function backId(res) {
+			layer.close(thisIndex);
+			if(res.status == "success") {
+				isId = true;
+				nickName = res.data.nickName;
+			} else {
+				isId = false;
+				msg = res.message;
+			}
+		}
+		function toLoginPage() {
+			layerMsgCenter("敬请期待")
+			// if(isId) {
+			// 	location.href = "./login.html?shareId="+inviteUid+"&shareName="+nickName;
+			// } else {
+			// 	layerMsgCenter(msg, function(){}, 2000);
+			// }
+			
+		}
+	</script>
+</html>

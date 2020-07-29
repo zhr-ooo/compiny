@@ -1,0 +1,247 @@
+/* 温馨提示:也许只在非手机浏览器中显示 */
+#isios, #isand {
+	position: -ms-device-fixed;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 999999999999999999;
+}
+.down_tooltip {
+  margin-top: 0.66rem;
+  padding: 0 0.6rem;
+  color: #444;
+  font-size: 0.34rem;
+}
+/* 温馨提示 */
+.down_tishi {
+  color: #f04955;
+}
+.down_img {
+  width: 100%;
+  height: 4.3rem;
+}
+/* 加载中与课程不存在 */
+.no_product {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.7);
+	text-align: center;
+	z-index: 400;
+}
+#no_tool {
+	display: block;
+	color: #fff;
+	margin-top: 50%;
+	font-size: 0.5rem;
+	font-family: "medium";
+}
+.load_img {
+	width: 3.5rem;
+	height: 3.5rem;
+}
+
+
+div {
+	background: #fff;
+}
+#product {
+	font-size: 0.46rem;
+	color: #000000;
+	padding-bottom: 1.86rem;
+}
+/* 作者和标题 */
+#pro_header {
+	padding: 0.7rem 0.425rem 0.36rem;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+/* 课程标题 */
+.pro_pro {
+	font-size: 0.54rem;
+	color:rgba(51,51,51,1);
+}
+.pro_author {
+	margin-top: 0.7rem;
+}
+/* 作者头像 */
+.pro_avatar {
+	width: 1.35rem;
+	height: 1.35rem;
+	border-radius:50%;
+	margin-right: 0.35rem;
+}
+/* 标题 */
+.pro_biao {
+	width:1.05rem;
+	height:0.51rem;
+	line-height: 0.6rem;
+	background:#EAF1FF;
+	border-radius:0.255rem;
+	color: #2D72FF;
+	font-size: 0.33rem;
+}
+/* 标题简介 */
+.pro_title {
+	line-height: 0.51rem;
+	font-size:0.46rem;
+	color:rgba(51,51,51,1);
+	margin-left: 0.17rem;
+}
+.pro_all {
+	width: 9.1rem;
+	line-height: 0.58rem;
+}
+.pro_other {
+	width:7.6rem;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+/* 详情俩字 */
+.title_xiang {
+	font-size: 0.36rem;
+	display: none;
+	color: #4A8DFF;
+}
+#title_content {
+	line-height: 0.56rem;
+	margin-top: 0.21rem;
+	display: none;
+}
+#make_up {
+	margin-left: 0.25rem;
+	font-size: 0.4rem;
+	color: #4A8DFF;
+}
+/* 具体内容 */
+#session{
+	padding: 0rem 0.42rem 0.38rem;
+	border-bottom:1px solid rgba(220,220,220,1);
+	margin-top: 0.5rem;
+	font-family: "regul";
+	color: #333;
+	font-size: 0.45rem;
+}
+#sess_content p {
+	line-height: 0.65rem !important;
+	margin-bottom: 0.3rem;
+	font-family: "regul";
+	color: #333;
+	font-size: 0.45rem;
+}
+#sess_content p span {
+	font-family: "regul";
+	color: #333;
+	font-size: 0.45rem;
+}
+.content_img {
+	width: 9.96rem;
+	margin-bottom: 0.3rem;
+}
+/* 视频 */
+#sess_content audio {
+	width: 100%;
+	margin-bottom: 0.3rem;
+}
+#sess_content video {
+	width: 100%;
+	height: 6.06rem;
+}
+.sess_video {
+	width: 100%;
+	height: 6.06rem;
+	margin-bottom: 0.3rem;
+}
+/* 视频封面图 */
+#sess_content .video_img {
+	width: 1.5rem;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	z-index: 200;
+}
+.video_iframe {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	object-fit: cover;
+}
+/* 评论 */
+#comments {
+	/* padding: 0.78rem 0.42rem 0; */
+	padding: 0.78rem 0 0 0.42rem;
+}
+/* 热门评论  样式 */
+.pro_comm_title {
+	font-size: 0.54rem;
+	letter-spacing: 1px;
+}
+
+.com_div {
+	margin-top: 0.42rem;
+}
+
+/* 头像 */
+.com_user_avatar {
+	width:1.26rem;
+	height:1.26rem;
+	border-radius:50%;
+	margin-right: 0.36rem;
+}
+/* 昵称 */
+.com_user_nick {
+	font-size: 0.42rem;
+}
+/* 时间 */
+.com_user_time {
+	font-size: 0.36rem;
+	margin-top: 0.32rem;
+}
+/* 评论内容 */
+.com_con {
+	margin-left: 1.62rem;
+	margin-top: 0.5rem;
+	padding-bottom: 1.22rem;
+	padding-right: 0.42rem;
+	border-bottom: 1px solid #dcdcdc;
+	line-height: 0.6rem;
+}
+
+/* 按钮：APP中打开 */
+#pro_foot {
+	width: 100%;
+	height: 1.86rem;
+	line-height: 1.86rem;
+	position: fixed;
+	position: -ms-device-fixed;
+	bottom: 0;
+	background: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+	z-index: 300;
+}
+.btn_toapp {
+	width: 9.96rem;
+	height: 1.14rem;
+	font-size:0.46rem;
+	color: #fff;
+	background:linear-gradient(-90deg,rgba(45,114,255,1),rgba(83,149,255,1));
+	border-radius:1rem;
+	border-width: 0;
+}
+/* 老版本,挨个区分  图片样式 */
+#sess_content .scrollLoading {
+	width: 9.96rem;	
+	height: auto;
+	margin-bottom: 0.3rem;
+}
+.content_makep img {
+	width: 9.96rem !important;
+	height: auto !important;
+	margin-bottom: 0.3rem;
+}

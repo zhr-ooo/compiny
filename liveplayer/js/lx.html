@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .add {
+        background: linear-gradient(to right, red, blue);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    #box {
+        width: 60px;
+        height: 30px;
+
+        margin: auto;
+    }
+</style>
+
+<body>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box')
+        const countDown = (second) => {
+            const s = second % 60;
+            const m = Math.floor(second / 60);
+            return `<span class='add'>${`00${m}`.slice(-2)}: ${`00${s}`.slice(-2)}</span>`;
+
+        };
+        let time = 200;
+
+        const timer = setInterval(() => {
+
+            const show = countDown(time--);
+            console.log(show)
+            box.innerHTML = show
+            if (time < 0) {
+
+                console.log('倒计时结束！');
+
+                clearInterval(timer);
+
+            }
+
+        }, 1000);
+    </script>
+</body>
+
+</html>

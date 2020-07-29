@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登录</title>
+		<link id="main_css" rel="stylesheet" type="text/css" href="css/main.css"/>
+		<link id="login_css" rel="stylesheet" type="text/css" href="css/login.css"/>
+		<link rel="stylesheet" type="text/css" href="css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/layer.css"/>
+	</head>
+	<body>
+		<div id="login_had" class="bg">
+			<div style="width: 100%;height: 100%;background-color: rgba(0,0,0,0.5);position: fixed;z-index: 5000;top: 0;left: 0;display: none;" id="mb">
+				<span style="position: absolute;top: 30%;left: 50%;transform: translate(-50%,0);">
+					<img src="img/load.gif" class="load_img" style="width: 3rem;">
+				</span>
+			</div>
+			<!-- <i class="layui-icon layui-icon-left p_a" style="font-size: 0.68rem;top: 1.11rem;left: 0.6rem;"></i> -->
+			<div class="user" id="haduser">
+				<p class="username medium" id="had_username">村长</p>
+				<p class="login_yao">邀请您加入V云空间</p>
+			</div>
+			<div class="user" id="nouser">
+				<p class="login_yao" style="margin-top: 1.02rem;">邀请您加入V云空间</p>
+			</div>
+			<div class="login_form">
+				<div class="flex a_c">
+					<input type="number" name="phone" id="mobile" value="" placeholder="请输入手机号" />
+				</div>
+				<div class="div_code p_r flex a_c">
+					<input type="number" name="code" id="captcha" value="" class="inp_code" placeholder="请输入验证码" />
+					<input type="button" class="hadlogin_code p_a c_333 t_c" id="getcode" onclick="getCode()" value="验证码" />
+				</div>
+				<div>
+					<input type="password" name="pass" id="pwd" placeholder="请输入8-12位数字或字母密码" />
+				</div>
+				<div class="p_r">
+					<input type="password" name="passpay" id="payPwd" placeholder="请输入六位支付密码" />
+					<div id="show_hide" class="p_a show" data-can="hide" onclick="showHide(this)">显示</div>
+				</div>
+				<div id="card">
+					<input type="text" name="card" id="inviteUid" placeholder="请输入邀请人ID号（选填）" />
+				</div>
+			</div>
+			<div class="t_c c_333 login_btn" onclick="toRegiest()">确定</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script id="regiest_js" src="js/regiest.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+</html>
