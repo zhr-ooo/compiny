@@ -1,0 +1,613 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 600px) and  (max-width: 1400px) {
+    body {
+        font-size: 18px
+    }
+
+    .flex_wrap {
+        height: 400px;
+    }
+
+    .phone1 {
+        height: 500px;
+    }
+
+    .font {
+        width: 400px;
+        height: 200px;
+    }
+
+    .er {
+        width: 400px;
+        height: 100px;
+
+    }
+
+    .box_ri {
+        width: 400px;
+    }
+
+    .font_02 {
+        position: absolute;
+        top: 22%;
+        left: 50%;
+        margin-left: -75.5px;
+    }
+
+    h3 {
+        position: absolute;
+        top: 27%;
+        left: 50%;
+        margin-left: -400px;
+    }
+
+    .img_box01 {
+        height: 410px;
+        padding-top: 15%;
+    }
+
+    .img_box011 {
+        height: 410px;
+        padding-top: 5%;
+    }
+
+    .box_li {
+        width: 380px;
+        height: 400px;
+        float: left;
+        margin-left: 50px;
+    }
+
+    .clou3 {
+        margin-top: -1%;
+    }
+
+    .clou1 {
+        margin-right: 8%;
+    }
+
+    .h33 {
+        position: absolute;
+        top: 37%;
+        left: 50%;
+        margin-left: -400px;
+
+    }
+
+    .cloud01 {
+        top: 50%;
+        left: 4%;
+    }
+
+    .box_li2 {
+        width: 400px;
+        height: 300px;
+    }
+
+    .cloud02 {
+        width: 100px;
+        height: 100px;
+        right: 14%;
+        top: 42%;
+    }
+
+    .wrap_box1 {
+        margin-top: 150px;
+    }
+
+    .font2 {
+        position: absolute;
+        top: 28%;
+        left: 50%;
+        margin-left: -72px;
+    }
+
+    .vyun {
+        top: -8%;
+    }
+
+    .p7 {
+        margin-top: -28%;
+    }
+
+    .ul1 li {
+        font-size: 16px;
+    }
+
+    .ul1 {
+       top: 5%;
+    }
+}
+
+@media (min-width: 1400px) {
+    body {
+        font-size: 18px
+    }
+
+    .flex_wrap {
+        height: 584px;
+    }
+
+    .phone1 {
+        height: 586px;
+    }
+
+    .font {
+        width: 475px;
+        height: 278px;
+    }
+
+    .er {
+        width: 400px;
+        height: 170px;
+    }
+
+    .box_ri {
+        width: 475px;
+    }
+
+    .font_02 {
+        margin: -70px auto;
+    }
+
+    h3 {
+        padding-top: 40px;
+        margin: 50px auto;
+    }
+
+    .img_box01 {
+        height: 550px;
+        margin:  auto;
+    }
+
+    .img_box011 {
+        height: 550px;
+        margin: 50px auto;
+    }
+
+    .box_li {
+        width: 440px;
+        height: 547px;
+    }
+
+    .clou3 {
+        margin-top: 3%;
+    }
+
+    .clou1 {
+        margin-right: 7%;
+    }
+
+    .h33 {
+        margin: auto;
+    }
+
+    .cloud01 {
+        left: 3%;
+        top: 45%;
+    }
+
+    .box_li2 {
+        width: 441px;
+        height: 340px;
+    }
+
+    .cloud02 {
+        width: 128px;
+        height: 128px;
+        right: 4%;
+        top: 40%;
+    }
+
+    .wrap_box1 {
+        margin-top: 150px;
+    }
+
+    .font2 {
+        margin: auto;
+    }
+
+    .vyun {
+        top:-57%;
+        left: 50%;
+        margin-left: -400px;
+    }
+
+    .p7 {
+        margin-top: -33%;
+    }
+
+    .ul1 li {
+        font-size: 18px;
+    }
+
+    .ul1 {
+        top:-7%;
+    }
+}
+
+.wrap_box1 {
+    padding-top: 10px;
+    margin-top: -112px;
+}
+
+.swiper-container {
+    width: 100%;
+    min-width: 960px;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.vyun {
+    position: absolute;
+}
+
+.p7 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #666666;
+}
+
+.main_slide {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    width: 100%;
+    height: 1000px;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.logo {
+    line-height: 78px;
+    width: 98px;
+    height: 78px;
+    background: url(../images/vyunlogo.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.header_wrap {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    width: 100%;
+
+}
+
+.nav_wrap {
+    position: relative;
+    height: 104px;
+    display: flex;
+    align-items: center;
+    width: 960px;
+    margin: 0 auto;
+}
+
+.nav_wrap::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #333333;
+    opacity: 0.33;
+
+}
+
+.nav_piece {
+    float: left;
+    position: relative;
+}
+
+.nav_piece h1 {
+    line-height: 30px;
+    font-size: 16px;
+    text-align: center;
+    padding: 0 15px;
+    position: relative;
+    cursor: pointer;
+    height: 30px;
+    color: #333333;
+    margin-right: 60px;
+}
+
+.now h1 {
+    background: url(../images/nav_now_bg.png) no-repeat bottom center;
+    color: #ffffff;
+}
+
+.nav_piece h1:hover {
+    background: url(../images/nav_now_bg.png) no-repeat bottom center;
+    color: #ffffff;
+    transition: all 0.8s ease 0s;
+}
+
+.sp1 {
+    background: url(../images/pg.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.head_ri {
+    position: absolute;
+    right: 0px;
+}
+
+.phone1 {
+    width: 286px;
+
+    background: url(../images/phone1.png) no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;
+}
+
+.flex_wrap {
+    width: 960px;
+
+    position: relative;
+    top: 10px;
+
+}
+
+.box_ri {
+    position: absolute;
+    right: 7%;
+    top: 0;
+}
+
+.font {
+
+    background: url(../images/font.png);
+    background-size: 100% 100%;
+}
+
+.er {
+    padding-top: 20%;
+    position: absolute;
+    right: 0;
+}
+
+.wei {
+    width: 165px;
+    height: 165px;
+    background: url(../images/vyunlogo55.png);
+    background-size: 100% 100%;
+    float: left;
+}
+
+.ios {
+    display: block;
+    margin-top: 10px;
+    width: 170px;
+    height: 57px;
+    float: right;
+    background: url(../images/ios.png);
+    background-size: 100% 100%;
+}
+
+.android {
+    display: block;
+    margin-top: 20px;
+    width: 170px;
+    height: 57px;
+    float: right;
+    background: url(../images/android.png);
+    background-size: 100% 100%;
+}
+
+.wrap_box {
+    width: 960px;
+    padding-top: 100px;
+    position: relative;
+}
+
+.font_02 {
+    width: 151px;
+    height: 58px;
+    background: url(../images/font_02.png);
+}
+
+.font2 {
+    width: 144px;
+    height: 50px;
+    background: url(../images/font_03.png);
+}
+
+h3 {
+    font-size: 15px;
+    color: #666666;
+    width: 800px;
+}
+
+.h33 {
+    font-size: 15px;
+    color: #666666;
+    width: 800px;
+}
+
+.img_box01 {
+    width: 1000px;
+}
+
+.img_box011 {
+    width: 1000px;
+}
+
+.box_li {
+    float: left;
+    margin-left: 50px;
+}
+
+.li1 {
+    background: url(../images/box_li01.png);
+    background-size: 100% 100%;
+}
+
+.li2 {
+    background: url(../images/box_li02.png);
+    background-size: 100% 100%;
+}
+
+.box_li2 {
+    float: left;
+    margin-left: 50px;
+}
+
+.ol1 {
+    background: url(../images/box_li03.png);
+    background-size: 100% 100%;
+}
+
+.ol2 {
+    background: url(../images/box_li04.png);
+    background-size: 100% 100%;
+}
+
+.wrap_box1 {
+    width: 960px;
+    padding-top: 300px;
+    position: relative;
+}
+
+.cloud01 {
+    width: 16px;
+    height: 180px;
+    position: absolute;
+    background: url(../images/cloud01.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.cloud02 {
+    position: absolute;
+    background: url(../images/cloud02.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.cloud03 {
+    width: 535px;
+    height: 46px;
+    position: absolute;
+    right: 0%;
+    bottom: 21%;
+    background: url(../images/cloud03.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.clou3 {
+    width: 535px;
+    height: 46px;
+    position: absolute;
+    left: 0%;
+    top: 35%;
+    background: url(../images/cloud03.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.clou1 {
+    width: 16px;
+    height: 180px;
+    position: absolute;
+    background: url(../images/cloud01.png) no-repeat;
+    background-size: 100% 100%;
+    right: 0%;
+    bottom: 20%;
+}
+
+.wrap_box2 {
+    width: 960px;
+    height: 300px;
+    margin: 30% auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.info {
+    border-left: 1px dashed rgba(0, 0, 0, 0.4);
+    padding-left: 40px;
+}
+
+.info h1 {
+    margin: 0;
+    color: #020202;
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.contact {
+    margin-top: 65px;
+    font-size: 20px;
+    color: #020202;
+}
+
+.contact p {
+    line-height: 36px;
+    font-size: 18px;
+}
+
+.bottom_box {
+    display: block;
+    position: absolute;
+    bottom: 100px;
+    font-size: 15px;
+    color: #333333;
+}
+
+.ul1 {
+    margin-left: 120px;
+    width: 800px;
+    position: absolute;
+    /* top:-7%; */
+}
+
+.ul1 li {
+    margin-top: 10px;
+    position: relative;
+    top: 50px;
+    font-weight: bold;
+    text-align: left;
+    color: #666666;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    list-style-type: circle;
+    list-style: circle;
+}
+

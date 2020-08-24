@@ -1,0 +1,89 @@
+body {
+	font: 20px 'SimHei', YaHei, Arial, Helvetica, sans-serif;
+	color: #010101;
+}
+
+body,
+p,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+li,
+dl,
+dt,
+dd,
+img,
+span,
+table,
+tr,
+td,
+th,
+hr,
+form,
+ol,
+tt,
+iframe,
+header,
+article,
+footer,
+tt {
+	margin: 0;
+	padding: 0
+}
+
+img {
+	max-width: 100%;
+	border: 0;
+	vertical-align: middle
+}
+
+ul,
+li,
+ol {
+	list-style: none
+}
+
+em,
+i,
+address {
+	font-style: normal
+}
+
+.clearfix {
+	zoom: 1;
+	display: block
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+
+input,
+button {
+	font-family: "微软雅黑";
+	outline: 0;
+	border: 0
+}
+
+a{
+	color: #555;
+	text-decoration:none;
+	outline: 0
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+a:hover{text-decoration: none;}
+/*a:focus, a:hover{color:#fff}*/
+

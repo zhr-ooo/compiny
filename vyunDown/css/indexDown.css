@@ -1,0 +1,295 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+html, body {
+    height: 100%;
+   overflow: hidden;
+}
+body {
+    background: url(../images/pg.png);
+    background-size: 100% 100%;
+}
+
+.container {
+    position: relative;
+    width: 1200px;
+    overflow: hidden;
+    margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+    body{
+        background: url(../images/phone5.png);
+        background-size: 100% 100%;
+    }
+    .container {
+        width: 100%;
+        top: 100px;
+    }
+    .phone{
+        display: none;
+    }
+    .con{
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+    }
+    .font1 {
+        width: 238px;
+        height: 139px;
+        margin: auto;
+    }
+
+    .wei {
+        width: 83px;
+        height: 83px;
+    }
+
+    .ios {
+        width: 85px;
+        height: 29px;
+    }
+
+    .android {
+        width: 85px;
+        height: 29px;
+    }
+ 
+    .box{
+        width: 240px;
+        height: 100px;
+        left: 50%;
+        margin-left: -120px;
+    }
+    .box2{
+        width: 58px;
+        height: 80px;
+        top:8%;
+    }
+    .button{
+        font-size: 20px;
+        margin: 80px auto;
+        width: 150px;
+        height: 40px;
+        line-height: 40px;
+    }
+}
+
+/*pad: w >= 768  && w< 992*/
+@media screen and (max-width: 992px) and (min-width: 768px) {
+    .container {
+        width: 750px;
+        top: 100px;
+    }
+
+    .phone {
+        width: 191px;
+        height: 390px;
+    }
+
+    .font1 {
+        width: 317px;
+        height: 186px;
+    }
+
+    .wei {
+        width: 110px;
+        height: 110px;
+    }
+
+    .ios {
+        width: 113px;
+        height: 38px;
+    }
+
+    .android {
+        width: 113px;
+        height: 38px;
+    }
+  
+    .con{
+        width: 420px;
+        /* height: 770px; */
+        float: right;
+    }
+    .box{
+        width: 317px;
+    }
+    .box2{
+        top:14%;
+        width: 230px;
+        height: 220px;
+    }
+    .button{
+        font-size: 30px;
+        margin: 80px auto;
+        width: 150px;
+        height: 40px;
+        line-height: 40px;
+    }
+}
+
+/*中等屏幕   w >= 992  && w<1200*/
+@media screen and (max-width: 1200px) and (min-width: 992px) {
+    .container {
+        width: 1080px;
+        top: 10%;
+    }
+
+    .phone {
+        width: 287px;
+        height: 584px;
+    }
+
+    .font1 {
+        width: 476px;
+        height: 278px;
+    }
+
+    .wei {
+        width: 165px;
+        height: 165px;
+    }
+
+    .ios {
+        width: 170px;
+        height: 57px;
+    }
+
+    .android {
+        width: 170px;
+        height: 57px;
+    }
+   
+    .con{
+        width: 634px;
+        /* height: 770px; */
+        float: right;
+    }
+    .box{
+        width: 476px;
+    }
+    .box2{
+        top: 25%;
+        width: 230px;
+        height: 220px;
+    }
+    .button{
+        font-size: 36px;
+        margin: 100px auto;
+        width: 200px;
+        height: 60px;
+        line-height: 60px;
+    }
+  
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        width: 1200px;
+        top: 10%;
+    }
+
+    .phone {
+        width: 380px;
+        height: 780px;
+    }
+
+    .font1 {
+        width: 634px;
+        height: 371px;
+    }
+
+    .wei {
+        width: 220px;
+        height: 220px;
+    }
+
+    .ios {
+        width: 226px;
+        height: 76px;
+    }
+
+    .android {
+        width: 226px;
+        height: 76px;
+    }
+    .con{
+        width: 634px;
+        /* height: 770px; */
+        float: right;
+    }
+    .box{
+        width: 634px;
+    }
+    .box2{
+        top: 25%;
+        width: 230px;
+        height: 220px;
+    }
+    .button{
+        font-size: 40px;
+        margin: 150px auto;
+        width: 226px;
+        height: 76px;
+        line-height: 76px;
+    }
+}
+
+.phone {
+    float: left;
+    background: url(../images/phone1.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.font1 {
+    background: url(../images/font.png);
+    background-size: 100% 100%;
+}
+
+.box {
+    position: absolute;
+    height: 400px;
+}
+
+.wei {
+    background: url(../images/wei.png);
+    background-size: 100% 100%;
+    margin-top: 12%;
+}
+
+.box2 {
+    position: absolute;
+    right: 10%;
+}
+
+.ios {
+    background: url(../images/ios.png);
+    background-size: 100% 100%;
+}
+
+.android {
+    margin-top: 20px;
+    background: url(../images/android.png);
+    background-size: 100% 100%;
+}
+
+.button{
+    border: 1px solid white;
+    border-radius: 80px;
+    color: white;
+    text-align: center;
+}
+.weixin-tip{
+    display: none; 
+    position: fixed; 
+    left:0; 
+    top:0; 
+    bottom:0; 
+    background:url(../images/show.png) no-repeat; 
+    background-size: 100% 100%;
+    height: 100%; 
+    width: 100%; 
+    z-index: 100;
+}

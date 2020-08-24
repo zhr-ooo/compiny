@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>V云空间官网</title>
+    <link rel="stylesheet" href="css/indexMoble.css?time='+new Date().getTime()+'">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+</head>
+<style>
+    .weixin-tip{
+    display: none; 
+    position: fixed; 
+    left:0; 
+    top:0; 
+    bottom:0; 
+    background:url(./images/show.png) no-repeat; 
+    background-size: 100% 100%;
+    height: 100%; 
+    width: 100%; 
+    z-index: 100;
+}
+</style>
+<body>
+    <div class="header">
+        <div class="logo"></div>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide sp1">
+                <div class="weixin-tip">
+      
+                </div>
+                <div class="font"></div>
+
+                <div class="button" style="top: 19.5rem;">app下载</div>
+                <div id="prev">
+
+                </div>
+            </div>
+
+            <div class="swiper-slide sp2">
+                
+                <div id="img1" class="mo1"></div>
+                <div class="boxI">
+                    <img class="f01 ff1" src="./images/f01.png" alt="">
+                    <div class="imgBox">
+                        <img id="zu1" class="proup" src="./images/z1.png" alt="">
+                    </div>
+                    <div class="imgBox">
+                        <img id="zu2" class="proup" src="./images/z3.png" alt="">
+                    </div>
+                    <div class="imgBox">
+                        <img id="zu3" class="proup" src="./images/z2.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide sp3" style="width: 102%;">
+                <div class="q2"></div>
+                <div class="boxI">
+                    <img class="f01 ff2" src="./images/f02.png" alt="">
+                    <div class="imgBox1">
+                        <img id="zu1" class="proup1" src="./images/zu4.png" alt="">
+                    </div>
+                    <div class="imgBox1">
+                        <img id="zu2" class="proup1" src="./images/zu5.png" alt="">
+                        <img id="q1" src="./images/q1.png" alt="">
+                    </div>
+                    <div class="imgBox1">
+                        <img id="zu3" class="proup1" src="./images/zu6.png" alt="">
+                    </div>
+                </div>
+                <div id="img1" class="mo2"></div>
+            </div>
+            <div class="swiper-slide sp4">
+                <div class="mo3"></div>
+                <div class="kua">
+                    <div class="kuaBox">
+                        <h2>商务合作</h2>
+                        <p>联系人：黄智昊</p>
+                        <p>邮箱：V18511850357@163.com</p>
+                        <p>手机号：18511850357</p>
+                    </div>
+                    <div class="kuaBox">
+                        <h2>媒体品牌</h2>
+                        <p>联系人：黄智昊</p>
+                        <p>邮箱：V18511850357@163.com</p>
+                        <p>手机号：18511850357</p>
+                    </div>
+                    <div class="kuaBox">
+                        <h2>联盟入驻</h2>
+                        <p>公众号：V联盟社区</p>
+                        <p>公众微信号：gh_5ad061146b87</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="js/rem.js"></script>
+<script src="js/jquery-3.2.1.min .js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/demo.js?v=28"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        direction: 'vertical', // 垂直切换选项
+        // loop: true, // 循环模式选项
+    })
+    mySwiper.on('slideChange', function (options) {
+        if (mySwiper.previousIndex === 0) {
+            $("#zu1").addClass("animated fadeInLeft");
+            $("#zu2").addClass("animated fadeInRight");
+            $("#zu3").addClass("animated fadeInLeft");
+            $(".ff1").addClass("animated fadeInDownBig")
+
+        } else {
+            $("#zu1").removeClass("animated fadeInLeft");
+            $("#zu2").removeClass("animated fadeInRight");
+            $("#zu3").removeClass("animated fadeInLeft");
+            $(".ff1").removeClass("animated fadeInDownBig")
+        }
+        if (mySwiper.activeIndex === 1) {
+            $("#zu1").addClass("animated fadeInLeft");
+            $("#zu2").addClass("animated fadeInRight");
+            $("#zu3").addClass("animated fadeInLeft");
+            $(".ff1").addClass("animated fadeInDownBig")
+        }
+        if (mySwiper.previousIndex === 1) {
+            $(".imgBox1 #zu1").addClass("animated fadeInLeft");
+            $(".imgBox1 #zu2").addClass("animated fadeInRight");
+            $(".imgBox1 #zu3").addClass("animated fadeInLeft");
+
+        } else {
+            $(".imgBox1 #zu1").removeClass("animated fadeInLeft");
+            $(".imgBox1 #zu2").removeClass("animated fadeInRight");
+            $(".imgBox1 #zu3").removeClass("animated fadeInLeft");
+        }
+        if (mySwiper.activeIndex === 2) {
+            $(".imgBox1 #zu1").addClass("animated fadeInLeft");
+            $(".imgBox1 #zu2").addClass("animated fadeInRight");
+            $(".imgBox1 #zu3").addClass("animated fadeInLeft");
+        }
+
+    })
+</script>
+
+
+</html>
